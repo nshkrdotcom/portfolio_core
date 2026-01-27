@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `PortfolioCore.Ports.VCS` behaviour for version control system abstraction
+  - 11 required callbacks: status, diff, diff_uncommitted, stage, stage_all, unstage, commit, log, show, current_branch, is_repo?
+  - 5 optional callbacks: push, pull, branch_create, branch_delete, checkout
+  - Comprehensive type specifications: repo, commit_hash, ref, status, diff_result, diff_stats, commit, error
+  - Full documentation with usage examples
+
 ## [0.4.0] - 2026-01-08
 
 ### Added
