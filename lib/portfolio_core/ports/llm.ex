@@ -45,7 +45,8 @@ defmodule PortfolioCore.Ports.LLM do
             input_tokens: non_neg_integer(),
             output_tokens: non_neg_integer()
           },
-          finish_reason: :stop | :length | :tool_use
+          finish_reason: :stop | :length | :tool_use,
+          response_id: String.t() | nil
         }
 
   @type stream_chunk :: %{
@@ -61,9 +62,14 @@ defmodule PortfolioCore.Ports.LLM do
     - `messages` - List of messages in the conversation
     - `opts` - Completion options:
       - `:model` - Model to use
-      - `:max_tokens` - Maximum tokens to generate
+      - `:max_tokens` - Maximum tokens to generate (legacy for chat completions)
+      - `:max_completion_tokens` - Maximum completion tokens (newer chat models)
+      - `:max_output_tokens` - Maximum output tokens (Responses API)
       - `:temperature` - Sampling temperature (0.0 - 2.0)
       - `:stop` - Stop sequences
+      - `:api` - `:chat_completions` or `:responses`
+      - `:store` - Whether the provider should store state
+      - `:previous_response_id` - Chain to a previous response when supported
 
   ## Returns
 

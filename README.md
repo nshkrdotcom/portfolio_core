@@ -26,7 +26,7 @@ Portfolio Core provides the foundational primitives for building RAG (Retrieval-
 
 ## Features
 
-### Port Specifications (16 total)
+### Port Specifications (18 total)
 
 **Storage Ports:**
 - `VectorStore` - Vector similarity search
@@ -49,8 +49,14 @@ Portfolio Core provides the foundational primitives for building RAG (Retrieval-
 - `Agent` - Tool-using agent behavior
 - `Tool` - Individual tool definitions
 
-**Evaluation (NEW in v0.3.0):**
+**Evaluation:**
 - `Evaluation` - RAG quality evaluation (RAG Triad, hallucination detection)
+
+**Agent Sessions (NEW in v0.5.0):**
+- `AgentSession` - Stateful autonomous agent session management (Claude, Codex)
+
+**Version Control (NEW in v0.5.0):**
+- `VCS` - Version control system abstraction (Git, Mercurial, etc.)
 
 ## Installation
 
@@ -59,7 +65,7 @@ Add `portfolio_core` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:portfolio_core, "~> 0.4.0"}
+    {:portfolio_core, "~> 0.5.0"}
   ]
 end
 ```
@@ -203,9 +209,21 @@ PortfolioCore.Registry.health_status(:llm)  # => :unhealthy
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Documentation
+## Guides
 
-- [HexDocs](https://hexdocs.pm/portfolio_core)
+Comprehensive documentation is available on [HexDocs](https://hexdocs.pm/portfolio_core) and in the `guides/` directory:
+
+| Guide | Description |
+|-------|-------------|
+| [Getting Started](guides/getting-started.md) | Installation, first manifest, first adapter |
+| [Architecture](guides/architecture.md) | Hexagonal architecture, module layout, design principles |
+| [Manifest Configuration](guides/manifest-configuration.md) | Full YAML schema reference, env vars, per-environment setup |
+| [Port Reference](guides/port-reference.md) | All 18 port specifications with callback signatures |
+| [Writing Adapters](guides/writing-adapters.md) | Adapter patterns, capabilities, health tracking |
+| [Telemetry & Observability](guides/telemetry.md) | Event catalogue, spans, metrics integration |
+| [Testing](guides/testing.md) | Mox mocks, registry isolation, manifest testing |
+
+Runnable examples are in `examples/` -- see the [Examples README](examples/README.md).
 
 ## Related Packages
 

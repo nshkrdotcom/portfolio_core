@@ -7,12 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-01-27
+
 ### Added
 - `PortfolioCore.Ports.VCS` behaviour for version control system abstraction
   - 11 required callbacks: status, diff, diff_uncommitted, stage, stage_all, unstage, commit, log, show, current_branch, is_repo?
   - 5 optional callbacks: push, pull, branch_create, branch_delete, checkout
   - Comprehensive type specifications: repo, commit_hash, ref, status, diff_result, diff_stats, commit, error
   - Full documentation with usage examples
+- `PortfolioCore.Ports.AgentSession` behaviour for stateful AI agent session management
+  - 7 callbacks: provider_name, capabilities, validate_config, start_session, execute, cancel, end_session
+  - Type specs for session_id, run_id, capability, event, run_result, token_usage
+  - 22 canonical event types across session/run/message/tool/usage categories
+  - Distinct from LLM (stateless) and Agent (application-orchestrated) ports
+  - Designed for externally autonomous agents (Claude, Codex) that control their own tool loop
+- LLM port: `response_id` field on `completion_result` type for response chaining
+- LLM port: new completion options for multi-API support
+  - `:max_completion_tokens` - Maximum completion tokens (newer chat models)
+  - `:max_output_tokens` - Maximum output tokens (Responses API)
+  - `:api` - `:chat_completions` or `:responses`
+  - `:store` - Whether the provider should store state
+  - `:previous_response_id` - Chain to a previous response when supported
+- Comprehensive guides in `guides/` directory:
+  - Getting Started, Architecture, Manifest Configuration, Port Reference,
+    Writing Adapters, Telemetry & Observability, Testing
+
+### Changed
+- LLM port: `:max_tokens` option documented as legacy for chat completions
+- Bump `supertester` test dependency from `~> 0.5.0` to `~> 0.5.1`
 
 ## [0.4.0] - 2026-01-08
 
@@ -161,7 +183,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Concrete adapter implementations should use `portfolio_index` package
 - No database schemas, migrations, or external API calls included
 
-[Unreleased]: https://github.com/nshkrdotcom/portfolio_core/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/nshkrdotcom/portfolio_core/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/nshkrdotcom/portfolio_core/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/nshkrdotcom/portfolio_core/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/nshkrdotcom/portfolio_core/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/nshkrdotcom/portfolio_core/compare/v0.2.0...v0.3.0

@@ -60,7 +60,7 @@ defmodule PortfolioCore do
 
       ```elixir
       defp deps do
-        [{:portfolio_core, "~> 0.3.0"}]
+        [{:portfolio_core, "~> 0.5.0"}]
       end
       ```
 
@@ -115,6 +115,8 @@ defmodule PortfolioCore do
   - `PortfolioCore.Ports.Agent` - Tool-using agent behavior
   - `PortfolioCore.Ports.Tool` - Individual tool definitions
   - `PortfolioCore.Ports.Evaluation` - RAG quality evaluation
+  - `PortfolioCore.Ports.VCS` - Version control system operations
+  - `PortfolioCore.Ports.AgentSession` - Stateful autonomous agent sessions
   """
 
   alias PortfolioCore.Manifest.Engine
