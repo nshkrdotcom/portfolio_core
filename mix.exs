@@ -72,7 +72,7 @@ defmodule PortfolioCore.MixProject do
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url},
       maintainers: ["NSHKR"],
-      files: ~w(lib guides assets .formatter.exs mix.exs README.md LICENSE CHANGELOG.md)
+      files: ~w(lib guides assets .formatter.exs mix.exs README.md LICENSE CHANGELOG.md examples)
     ]
   end
 
